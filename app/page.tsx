@@ -85,7 +85,7 @@ export default function Home() {
             <input
               type="number"
               value={inputHours}
-              onChange={(e) => setInputHours(parseInt(e.target.value))}
+              onChange={(e) => setInputHours(parseInt(e.target.value) || "")}
               placeholder="Hours"
               className="w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-4 focus:ring-purple-300 text-gray-900"
             />
