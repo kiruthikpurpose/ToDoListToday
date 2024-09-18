@@ -119,7 +119,7 @@ export default function Home() {
               <span className="font-semibold text-green-700">{totalHours} hrs</span> / 24 hrs
             </p>
             {totalHours === 24 && (
-              <p className="text-red-500 mt-2">You've reached the 24-hour limit!</p>
+              <p className="text-red-500 mt-2">You&apos;ve reached the 24-hour limit!</p>
             )}
           </div>
 
