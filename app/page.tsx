@@ -1,7 +1,6 @@
 "use client"; // This is a Client Component
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { v4 as uuidv4 } from "uuid";
