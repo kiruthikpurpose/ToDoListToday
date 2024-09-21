@@ -1,7 +1,6 @@
 "use client"; // This is a Client Component
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { v4 as uuidv4 } from "uuid";
@@ -119,7 +118,7 @@ export default function Home() {
               <span className="font-semibold text-green-700">{totalHours} hrs</span> / 24 hrs
             </p>
             {totalHours === 24 && (
-              <p className="text-red-500 mt-2">You&apos;ve reached the 24-hour limit!</p>
+              <p className="text-red-500 mt-2">You've reached the 24-hour limit!</p>
             )}
           </div>
 
@@ -165,7 +164,7 @@ const TaskCard = ({ task, index, moveTask, toggleComplete }: any) => {
         onClick={() => toggleComplete(task.id)}
         className={`ml-4 ${task.completed ? "text-green-600" : "text-red-500"} hover:scale-110`}
       >
-        {task.completed ? "&#10003;" : "&#10060;"}
+        {task.completed ? "✓" : "✗"}
       </button>
     </li>
   );
