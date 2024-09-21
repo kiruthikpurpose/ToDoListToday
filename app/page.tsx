@@ -14,14 +14,6 @@ type Task = {
   completed: boolean;
 };
 
-// Task Card Props Type
-type TaskCardProps = {
-  task: Task;
-  index: number;
-  moveTask: (dragIndex: number, hoverIndex: number) => void;
-  toggleComplete: (taskId: string) => void;
-};
-
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [inputValue, setInputValue] = useState("");
@@ -35,7 +27,7 @@ export default function Home() {
     if (inputValue.trim() && inputHours && totalHours + inputHours <= 24) {
       setTasks([
         ...tasks,
-        { id: uuidv4(), text: inputValue, hours: inputHours, completed: false },
+        { id: uuidv4(), text: inputValue, hours: inputHours, completed: false }
       ]);
       setTotalHours(totalHours + inputHours);
       setInputValue("");
@@ -124,15 +116,10 @@ export default function Home() {
           <div className="mt-6 p-4 bg-gray-100 rounded-lg text-gray-800">
             <p>
               Total Time Allocated:{" "}
-              <span className="font-semibold text-green-700">
-                {totalHours} hrs
-              </span>{" "}
-              / 24 hrs
+              <span className="font-semibold text-green-700">{totalHours} hrs</span> / 24 hrs
             </p>
             {totalHours === 24 && (
-              <p className="text-red-500 mt-2">
-                You've reached the 24-hour limit!
-              </p>
+              <p className="text-red-500 mt-2">You&apos;ve reached the 24-hour limit!</p>
             )}
           </div>
 
@@ -140,10 +127,8 @@ export default function Home() {
           <div className="mt-6 p-4 bg-gray-100 rounded-lg text-gray-800">
             <p>
               Completed Tasks:{" "}
-              <span className="font-semibold text-indigo-600">
-                {completedTasks}
-              </span>{" "}
-              / {tasks.length}
+              <span className="font-semibold text-indigo-600">{completedTasks}</span> /{" "}
+              {tasks.length}
             </p>
           </div>
         </div>
@@ -153,15 +138,10 @@ export default function Home() {
 }
 
 // Drag and drop task card
-const TaskCard: React.FC<TaskCardProps> = ({
-  task,
-  index,
-  moveTask,
-  toggleComplete,
-}) => {
+const TaskCard = ({ task, index, moveTask, toggleComplete }: any) => {
   const [, drag] = useDrag({
     type: "TASK",
-    item: { index },
+    item: { index }
   });
 
   const [, drop] = useDrop({
@@ -171,30 +151,21 @@ const TaskCard: React.FC<TaskCardProps> = ({
         moveTask(item.index, index);
         item.index = index;
       }
-    },
+    }
   });
 
   return (
-    <li
-      ref={(node) => {
-        if (node) drag(drop(node));
-      }}
-      className="flex justify-between items-center p-4 bg-gray-200 rounded-lg shadow-sm hover:bg-gray-300 transition duration-200"
-    >
+    <li ref={(node) => drag(drop(node))} className="flex justify-between items-center p-4 bg-gray-200 rounded-lg shadow-sm hover:bg-gray-300 transition duration-200">
       <span
-        className={`text-lg ${
-          task.completed ? "line-through text-green-500" : "text-gray-800"
-        }`}
+        className={`text-lg ${task.completed ? "line-through text-green-500" : "text-gray-800"}`}
       >
         {task.text} ({task.hours} hrs)
       </span>
       <button
         onClick={() => toggleComplete(task.id)}
-        className={`ml-4 ${
-          task.completed ? "text-green-600" : "text-red-500"
-        } hover:scale-110`}
+        className={`ml-4 ${task.completed ? "text-green-600" : "text-red-500"} hover:scale-110`}
       >
-        {task.completed ? "✓" : "✗"}
+        {task.completed ? "&#10003;" : "&#10060;"}
       </button>
     </li>
   );
